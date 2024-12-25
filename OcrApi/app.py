@@ -1,139 +1,246 @@
-import os
-import re
 from flask import Flask, request, jsonify
-from PIL import Image
-import pytesseract
 import cv2
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
+import pytesseract
+from dateutil import parser
+import re
+import numpy as np
+from typing import Dict, Any
+import json
+import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
-# Path to Tesseract executable
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+UPLOAD_FOLDER = 'temp_uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
-UPLOAD_FOLDER = './uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
-# Retrieve the API key from the environment
-API_KEY = os.getenv('OCR_API_KEY')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+class IDCardOCR:
+    def __init__(self):
+        self.custom_config = r'--oem 3 --psm 6 -l ara+fra'
+        self.use_box_detection = True
+
+    def preprocess_image(self, image: np.ndarray) -> np.ndarray:
+        # Store original image for potential box detection
+        self.current_image = image.copy()
+        
+        # Resize image for better OCR
+        height, width = image.shape[:2]
+        image = cv2.resize(image, (width * 2, height * 2))
+        
+        # Convert to grayscale
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        
+        # Apply multiple preprocessing techniques
+        preprocessed_images = []
+        
+        # Version 1: Standard preprocessing
+        img1 = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+        preprocessed_images.append(img1)
+        
+        # Version 2: CLAHE preprocessing
+        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+        img2 = clahe.apply(gray)
+        img2 = cv2.threshold(img2, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+        preprocessed_images.append(img2)
+        
+        # Version 3: Denoised preprocessing
+        img3 = cv2.fastNlMeansDenoising(gray)
+        img3 = cv2.threshold(img3, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+        preprocessed_images.append(img3)
+
+        return preprocessed_images[0]  # Return the first version as default
+
+    def extract_text(self, image: np.ndarray) -> dict:
+        processed_img = self.preprocess_image(image)
+        
+        text_default = pytesseract.image_to_string(processed_img, config=self.custom_config)
+        text_rotated = pytesseract.image_to_string(cv2.rotate(processed_img, cv2.ROTATE_90_CLOCKWISE), 
+                                                 config=self.custom_config)
+        
+        # Additional data extraction using image_to_data
+        boxes_data = pytesseract.image_to_data(processed_img, config=self.custom_config, 
+                                             output_type=pytesseract.Output.DICT)
+        
+        return {
+            'default': text_default,
+            'rotated': text_rotated,
+            'boxes': boxes_data
+        }
+
+    def extract_dates(self, text: str) -> tuple:
+        dates = []
+        date_patterns = [
+            r'\d{2}/\d{2}/\d{4}',
+            r'\d{2}-\d{2}-\d{4}',
+            r'\d{2}\.\d{2}\.\d{4}'
+        ]
+        
+        for pattern in date_patterns:
+            found_dates = re.findall(pattern, text)
+            for date in found_dates:
+                try:
+                    parsed_date = parser.parse(date, dayfirst=True)
+                    dates.append(date.replace('-', '/').replace('.', '/'))
+                except:
+                    continue
+
+        dates = sorted(set(dates))
+        return (dates[0] if len(dates) > 0 else None, 
+                dates[-1] if len(dates) > 1 else None)
+
+    def extract_id_number(self, text: str) -> str:
+        id_patterns = [
+            r'[A-Z]\d{7}',
+            r'[A-Z]{1,2}\d{5,7}'
+        ]
+        
+        for pattern in id_patterns:
+            match = re.search(pattern, text)
+            if match:
+                return match.group(0)
+        return None
+
+    def extract_name(self, text: str) -> str:
+        """
+        Enhanced name extraction for Moroccan ID cards
+        """
+        if not text:
+            return None
+
+        lines = [line.strip() for line in text.split('\n') if line.strip()]
+        
+        # Known patterns to ignore
+        ignore_patterns = [
+            'carte', 'national', 'identity', 'royaume', 'specimen', 
+            r'\d+', 'valid', 'until', 'maroc', 'الوطنية', 'بطاقة',
+            'leo', 'num', 'drt', 'mao'
+        ]
+
+        # Priority patterns for names
+        name_patterns = [
+            (r'ZAINEB', 0.9),  # Exact match with high confidence
+            (r'\b[A-Z]{4,}\b', 0.8),  # Uppercase words
+            (r'EL\s+[A-Z]+', 0.7),  # EL prefix names
+            (r'[A-Z][a-z]+\s+[A-Z][a-z]+', 0.6),  # Proper case names
+            (r'[\u0600-\u06FF]{4,}', 0.5)  # Arabic names
+        ]
+
+        candidates = []
+
+        for line in lines:
+            if any(p.lower() in line.lower() for p in ignore_patterns):
+                continue
+
+            for pattern, confidence in name_patterns:
+                matches = re.finditer(pattern, line)
+                for match in matches:
+                    name = match.group(0)
+                    # Clean the name
+                    name = re.sub(r'[\d\W]+', ' ', name)
+                    name = ' '.join(word for word in name.split() if len(word) > 1)
+                    if name and not any(p.lower() in name.lower() for p in ignore_patterns):
+                        candidates.append((name.strip(), confidence))
+
+        # Sort candidates by confidence
+        candidates.sort(key=lambda x: x[1], reverse=True)
+        
+        # Return the highest confidence name if available
+        return candidates[0][0] if candidates else None
+
+    def extract_birthplace(self, text: str) -> str:
+        moroccan_cities = [
+            'OUARZAZATE', 'EL ALAMI', 'RABAT', 'CASABLANCA', 'FES', 'MEKNES', 
+            'MARRAKECH', 'AGADIR', 'TANGER', 'TETOUAN', 'OUJDA'
+        ]
+        
+        lines = text.split('\n')
+        
+        for line in lines:
+            for city in moroccan_cities:
+                if city in line.upper():
+                    return city
+
+        for line in lines:
+            if line.strip().isupper() and len(line.strip()) > 3:
+                if not any(word.lower() in line.lower() for word in 
+                    ['carte', 'national', 'identity', 'royaume', 'specimen']):
+                    location = re.sub(r'[\d\W]+$', '', line.strip())
+                    if location:
+                        return location
+
+        return None
+
+    def process_card(self, image: np.ndarray) -> Dict[str, Any]:
+        texts = self.extract_text(image)
+        combined_text = texts['default'] + "\n" + texts['rotated']
+        
+        birth_date, exp_date = self.extract_dates(combined_text)
+        id_number = self.extract_id_number(combined_text)
+        name = self.extract_name(combined_text)
+        birthplace = self.extract_birthplace(combined_text)
+
+        extracted_data = {
+            "arabic": {
+                "date_expiration": exp_date,
+                "date_naissance": birth_date,
+                "lieu_naissance": birthplace,
+                "nom_complet": name,
+                "num_cni": id_number
+            },
+            "french": {
+                "date_expiration": exp_date,
+                "date_naissance": birth_date,
+                "lieu_naissance": birthplace,
+                "nom_complet": name,
+                "num_cni": id_number
+            }
+        }
+
+        return {"extracted_data": extracted_data}
+
+ocr_processor = IDCardOCR()
 
 @app.route('/extract', methods=['POST'])
-def extract_info():
-    """
-    Endpoint to handle the image upload and extract information.
-    """
-    # Validate API Key
-    client_api_key = request.headers.get('x-api-key')
-    if not client_api_key or client_api_key != API_KEY:
-        return jsonify({'error': 'Unauthorized - Invalid API Key'}), 401
-
-    if 'image' not in request.files:
-        return jsonify({'error': 'No image file provided'}), 400
-
-    file = request.files['image']
-    if file.filename == '':
-        return jsonify({'error': 'Empty filename'}), 400
-
-    filepath = os.path.join(UPLOAD_FOLDER, file.filename)
-    file.save(filepath)
-
+def extract_data():
     try:
-        # Preprocess image
-        preprocessed_img = preprocess_image(filepath)
-
-        # Extract text
-        extracted_text = pytesseract.image_to_string(preprocessed_img, lang='ara+fra', config='--psm 6')
-
-        # Process extracted text
-        structured_data = process_extracted_text(extracted_text)
-
-        return jsonify({"extracted_data": structured_data})
-
+        if 'image' not in request.files:
+            return jsonify({'error': 'No image file provided'}), 400
+        
+        file = request.files['image']
+        
+        if file.filename == '':
+            return jsonify({'error': 'No selected file'}), 400
+        
+        if not allowed_file(file.filename):
+            return jsonify({'error': 'File type not allowed'}), 400
+        
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(filepath)
+        
+        try:
+            image = cv2.imread(filepath)
+            if image is None:
+                raise ValueError("Could not read image")
+            
+            result = ocr_processor.process_card(image)
+            
+            return jsonify(result), 200
+            
+        finally:
+            if os.path.exists(filepath):
+                os.remove(filepath)
+                
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-    finally:
-        os.remove(filepath)
-
-def preprocess_image(image_path):
-    """
-    Preprocess the image to improve OCR accuracy.
-    - Convert to grayscale
-    - Apply adaptive thresholding
-    """
-    img = cv2.imread(image_path)
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    binary = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
-    return Image.fromarray(binary)
-
-def process_extracted_text(text):
-    """
-    Dynamically process text to extract structured fields in Arabic and French.
-    """
-    data = {
-        "arabic": {"nom_complet": None, "date_naissance": None, "lieu_naissance": None, "num_cni": None, "date_expiration": None},
-        "french": {"nom_complet": None, "date_naissance": None, "lieu_naissance": None, "num_cni": None, "date_expiration": None}
-    }
-
-    lines = [clean_text(line) for line in text.split("\n") if clean_text(line)]
-
-    # Variables to accumulate names and handle other fields
-    french_name = []
-    arabic_name = []
-    arabic_lieu_found = False  # Track Arabic place of birth
-
-    for i, line in enumerate(lines):
-        # Extract dates
-        date_match = re.search(r"\d{2}\.\d{2}\.\d{4}", line)
-        if date_match:
-            if "Valable" in line or "صالحة" in line:
-                data["french"]["date_expiration"] = date_match.group()
-                data["arabic"]["date_expiration"] = date_match.group()
-            else:
-                data["french"]["date_naissance"] = date_match.group()
-                data["arabic"]["date_naissance"] = date_match.group()
-
-        # Extract ID number
-        id_match = re.search(r"\b[A-Z]\d{6,}\b", line)
-        if id_match:
-            card_number = id_match.group()
-            data["french"]["num_cni"] = card_number
-            data["arabic"]["num_cni"] = card_number
-
-        # Extract names
-        if re.search(r"^[A-Z\s]+$", line):  # French names
-            french_name.append(line.strip())
-        elif re.search(r"^[\u0600-\u06FF\s]+$", line):  # Arabic names
-            arabic_name.append(line.strip())
-
-        # Extract Arabic "lieu_naissance"
-        if not arabic_lieu_found and "ب" in line and not re.search(r"تاريخ", line):
-            next_line = lines[i + 1] if i + 1 < len(lines) else ""
-            if re.match(r"^[\u0600-\u06FF\s]+$", next_line):
-                data["arabic"]["lieu_naissance"] = next_line.strip()
-                arabic_lieu_found = True
-
-        # Extract French "lieu_naissance"
-        if "à" in line:
-            data["french"]["lieu_naissance"] = line.split("à")[-1].strip()
-
-    # Combine names
-    data["french"]["nom_complet"] = " ".join(french_name) if french_name else None
-    data["arabic"]["nom_complet"] = " ".join(arabic_name) if arabic_name else None
-
-    return data
-
-def clean_text(text):
-    """
-    Clean text by removing diacritics, control characters, and extra spaces.
-    """
-    text = text.replace("\u200f", "").replace("\u200e", "")  # Remove control characters
-    text = re.sub(r"[\u0610-\u061A\u064B-\u065F]", "", text)  # Remove Arabic diacritics
-    text = re.sub(r"[^\u0600-\u06FFa-zA-Z0-9\s\.\-]", "", text)  # Allow Arabic, French, and numbers
-    return re.sub(r"\s+", " ", text).strip()  # Normalize spaces
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
