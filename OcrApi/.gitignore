@@ -1,5 +1,0 @@
-# Ignorer les environnements virtuels
-env/
-*.pyc
-__pycache__/
-.env
