@@ -1,0 +1,212 @@
+2024-12-29 20:53:09.595 | INFO     | app:extract_data:41 - Image successfully loaded.
+2024-12-29 20:53:09.595 | INFO     | app:preprocess_image:26 - Preprocessing image.
+2024-12-29 20:53:09.646 | INFO     | app:extract_data:47 - Running PaddleOCR.
+2024-12-29 20:53:11.108 | INFO     | app:extract_data:52 - OCR Extracted Text:
+ailaclol
+ROYAUMEDUMAROC
+CARTE NATIONALE D'IDENTITE
+HAMZA
+ELBOUZIDI
+29.11.2001
+Néle
+SAFI
+HH246780
+Valablejusqu'au26.05.2031
+No
+2024-12-29 20:53:11.108 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
+2024-12-29 20:53:11.111 | INFO     | app:validate_structured_data:94 - Validating extracted structured data.
+2024-12-29 20:53:11.111 | WARNING  | app:validate_structured_data:98 - Critical field 'Prénom' is missing.
+2024-12-29 20:53:11.138 | WARNING  | app:validate_structured_data:98 - Critical field 'Nom' is missing.
+2024-12-29 20:53:11.139 | WARNING  | app:validate_structured_data:98 - Critical field 'Num d'identité' is missing.
+2024-12-29 20:53:11.140 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'Not Detected', 'Nom': 'Not Detected', 'Date de naissance': 'Not Detected', 'Lieu de naissance': 'Not Detected', "Num d'identité": 'Not Detected', "Valable jusqu'au": 'Not Detected'}
+2024-12-29 20:54:56.927 | INFO     | app:extract_data:41 - Image successfully loaded.
+2024-12-29 20:54:56.928 | INFO     | app:preprocess_image:26 - Preprocessing image.
+2024-12-29 20:54:56.960 | INFO     | app:extract_data:47 - Running PaddleOCR.
+2024-12-29 20:54:58.523 | INFO     | app:extract_data:52 - OCR Extracted Text:
+ailaclol
+ROYAUMEDUMAROC
+CARTE NATIONALE D'IDENTITE
+HAMZA
+ELBOUZIDI
+29.11.2001
+Néle
+SAFI
+HH246780
+Valablejusqu'au26.05.2031
+No
+2024-12-29 20:54:58.524 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
+2024-12-29 20:54:58.525 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
+2024-12-29 20:54:58.525 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ROYAUMEDUMAROC', 'Nom': 'HAMZA', 'Date de naissance': '29.11.2001', 'Lieu de naissance': 'ELBOUZIDI', "Num d'identité": 'SAFI', "Valable jusqu'au": '26.05.2031'}
+2024-12-29 20:56:13.075 | INFO     | app:extract_data:41 - Image successfully loaded.
+2024-12-29 20:56:13.077 | INFO     | app:preprocess_image:26 - Preprocessing image.
+2024-12-29 20:56:13.081 | INFO     | app:extract_data:47 - Running PaddleOCR.
+2024-12-29 20:56:14.289 | INFO     | app:extract_data:52 - OCR Extracted Text:
+alaslooll
+ROYAUME DU MAROC
+ilaibglu
+CARTE NATIONALE DIDENTITE
+AYOUB
+Jaly
+BOULAGHLA
+08.07.1999
+Nele
+SAFI
+CAN377172
+Alll
+HH73696
+Valablejusquau13.04.2032e
+2024-12-29 20:56:14.290 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
+2024-12-29 20:56:14.290 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
+2024-12-29 20:56:14.290 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'AYOUB', 'Nom': 'BOULAGHLA', 'Date de naissance': '08.07.1999', 'Lieu de naissance': 'SAFI', "Num d'identité": 'CAN377172', "Valable jusqu'au": None}
+2024-12-29 20:56:43.251 | INFO     | app:extract_data:41 - Image successfully loaded.
+2024-12-29 20:56:43.252 | INFO     | app:preprocess_image:26 - Preprocessing image.
+2024-12-29 20:56:43.256 | INFO     | app:extract_data:47 - Running PaddleOCR.
+2024-12-29 20:56:44.528 | INFO     | app:extract_data:52 - OCR Extracted Text:
+ROYAUMEDUMAROC
+CARTENATIONALEDIDENTITE
+ELALAMI
+ZAINEB
+05/12/1983
+Neela
+Sljlug
+OUARZAZATE
+CAN 123457
+Specimen
+Valable jusqu'au 22/07/2029  JJa
+U1234567
+N
+2024-12-29 20:56:44.529 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
+2024-12-29 20:56:44.529 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
+2024-12-29 20:56:44.530 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ROYAUMEDUMAROC', 'Nom': 'CARTENATIONALEDIDENTITE', 'Date de naissance': None, 'Lieu de naissance': 'ELALAMI', "Num d'identité": 'ZAINEB', "Valable jusqu'au": None}
+2024-12-29 20:56:56.230 | INFO     | app:extract_data:41 - Image successfully loaded.
+2024-12-29 20:56:56.231 | INFO     | app:preprocess_image:26 - Preprocessing image.
+2024-12-29 20:56:56.235 | INFO     | app:extract_data:47 - Running PaddleOCR.
+2024-12-29 20:56:57.165 | INFO     | app:extract_data:52 - OCR Extracted Text:
+wJI aslJ
+ROYAUME DU MAROC
+r m UrJI GU)
+CARTE NATIONALE D IDENTITE
+EL ALAMI
+ZAINEB
+05/12/1983
+N6a la
+1 OUARZAZATE
+CAN 123457
+eahen
+Valablojusquau 22/07/2029 y  11  m
+U1234567
+2024-12-29 20:56:57.181 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
+2024-12-29 20:56:57.181 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
+2024-12-29 20:56:57.182 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ZAINEB', 'Nom': None, 'Date de naissance': None, 'Lieu de naissance': None, "Num d'identité": 'U1234567', "Valable jusqu'au": None}
+2024-12-29 20:57:04.179 | INFO     | app:extract_data:41 - Image successfully loaded.
+2024-12-29 20:57:04.180 | INFO     | app:preprocess_image:26 - Preprocessing image.
+2024-12-29 20:57:04.182 | INFO     | app:extract_data:47 - Running PaddleOCR.
+2024-12-29 20:57:04.878 | INFO     | app:extract_data:52 - OCR Extracted Text:
+alaslooll
+ROYAUME DU MAROC
+ilaibglu
+CARTE NATIONALE DIDENTITE
+AYOUB
+Jaly
+BOULAGHLA
+08.07.1999
+Nele
+SAFI
+CAN377172
+Alll
+HH73696
+Valablejusquau13.04.2032e
+2024-12-29 20:57:04.879 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
+2024-12-29 20:57:04.879 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
+2024-12-29 20:57:04.879 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'AYOUB', 'Nom': 'BOULAGHLA', 'Date de naissance': '08.07.1999', 'Lieu de naissance': 'SAFI', "Num d'identité": 'CAN377172', "Valable jusqu'au": None}
+2024-12-29 20:57:17.865 | INFO     | app:extract_data:41 - Image successfully loaded.
+2024-12-29 20:57:17.866 | INFO     | app:preprocess_image:26 - Preprocessing image.
+2024-12-29 20:57:17.875 | INFO     | app:extract_data:47 - Running PaddleOCR.
+2024-12-29 20:57:19.008 | INFO     | app:extract_data:52 - OCR Extracted Text:
+ailaclol
+ROYAUMEDUMAROC
+CARTE NATIONALE D'IDENTITE
+HAMZA
+ELBOUZIDI
+29.11.2001
+Néle
+SAFI
+HH246780
+Valablejusqu'au26.05.2031
+No
+2024-12-29 20:57:19.009 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
+2024-12-29 20:57:19.010 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
+2024-12-29 20:57:19.010 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ROYAUMEDUMAROC', 'Nom': 'HAMZA', 'Date de naissance': '29.11.2001', 'Lieu de naissance': 'ELBOUZIDI', "Num d'identité": 'SAFI', "Valable jusqu'au": '26.05.2031'}
+2024-12-29 20:58:47.810 | INFO     | app:extract_data:41 - Image successfully loaded.
+2024-12-29 20:58:47.812 | INFO     | app:preprocess_image:26 - Preprocessing image.
+2024-12-29 20:58:47.833 | INFO     | app:extract_data:47 - Running PaddleOCR.
+2024-12-29 20:58:49.362 | INFO     | app:extract_data:52 - OCR Extracted Text:
+ailaclol
+ROYAUMEDUMAROC
+CARTE NATIONALE D'IDENTITE
+HAMZA
+ELBOUZIDI
+29.11.2001
+Néle
+SAFI
+HH246780
+Valablejusqu'au26.05.2031
+No
+2024-12-29 20:58:49.362 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
+2024-12-29 20:58:49.364 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
+2024-12-29 20:58:49.365 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ROYAUMEDUMAROC', 'Nom': 'HAMZA', 'Date de naissance': '29.11.2001', 'Lieu de naissance': 'ELBOUZIDI', "Num d'identité": 'SAFI', "Valable jusqu'au": '26.05.2031'}
+2024-12-30 10:21:40.017 | INFO     | app:extract_data:41 - Image successfully loaded.
+2024-12-30 10:21:40.018 | INFO     | app:preprocess_image:26 - Preprocessing image.
+2024-12-30 10:21:40.041 | INFO     | app:extract_data:47 - Running PaddleOCR.
+2024-12-30 10:21:42.059 | INFO     | app:extract_data:52 - OCR Extracted Text:
+ailaclol
+ROYAUMEDUMAROC
+CARTE NATIONALE D'IDENTITE
+HAMZA
+ELBOUZIDI
+29.11.2001
+Néle
+SAFI
+HH246780
+Valablejusqu'au26.05.2031
+No
+2024-12-30 10:21:42.060 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
+2024-12-30 10:21:42.062 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
+2024-12-30 10:21:42.062 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ROYAUMEDUMAROC', 'Nom': 'HAMZA', 'Date de naissance': '29.11.2001', 'Lieu de naissance': 'ELBOUZIDI', "Num d'identité": 'SAFI', "Valable jusqu'au": '26.05.2031'}
+2024-12-30 11:02:10.356 | INFO     | app:extract_data:41 - Image successfully loaded.
+2024-12-30 11:02:10.356 | INFO     | app:preprocess_image:26 - Preprocessing image.
+2024-12-30 11:02:10.359 | INFO     | app:extract_data:47 - Running PaddleOCR.
+2024-12-30 11:02:11.890 | INFO     | app:extract_data:52 - OCR Extracted Text:
+yCalSa
+ROYAUME DU MAROC
+CARTE NATIONALE DIDENTITE
+NOUSSAIR
+ABELLOUCH
+Nele
+01.08.2001
+AGADIRAGADIR IDA OU TNANE
+Valablejusqu'au
+29.01.2028
+Wealwl
+J549231
+2024-12-30 11:02:11.892 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
+2024-12-30 11:02:11.893 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
+2024-12-30 11:02:11.893 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'NOUSSAIR', 'Nom': 'ABELLOUCH', 'Date de naissance': '01.08.2001', 'Lieu de naissance': None, "Num d'identité": 'J549231', "Valable jusqu'au": None}
+2024-12-30 14:30:39.357 | INFO     | app:extract_data:41 - Image successfully loaded.
+2024-12-30 14:30:39.359 | INFO     | app:preprocess_image:26 - Preprocessing image.
+2024-12-30 14:30:39.393 | INFO     | app:extract_data:47 - Running PaddleOCR.
+2024-12-30 14:30:41.230 | INFO     | app:extract_data:52 - OCR Extracted Text:
+ailaclol
+ROYAUMEDUMAROC
+CARTE NATIONALE D'IDENTITE
+HAMZA
+ELBOUZIDI
+29.11.2001
+Néle
+SAFI
+HH246780
+Valablejusqu'au26.05.2031
+No
+2024-12-30 14:30:41.230 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
+2024-12-30 14:30:41.232 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
+2024-12-30 14:30:41.232 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ROYAUMEDUMAROC', 'Nom': 'HAMZA', 'Date de naissance': '29.11.2001', 'Lieu de naissance': 'ELBOUZIDI', "Num d'identité": 'SAFI', "Valable jusqu'au": '26.05.2031'}
