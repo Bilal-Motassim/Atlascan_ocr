@@ -1,212 +1,923 @@
-2024-12-29 20:53:09.595 | INFO     | app:extract_data:41 - Image successfully loaded.
-2024-12-29 20:53:09.595 | INFO     | app:preprocess_image:26 - Preprocessing image.
-2024-12-29 20:53:09.646 | INFO     | app:extract_data:47 - Running PaddleOCR.
-2024-12-29 20:53:11.108 | INFO     | app:extract_data:52 - OCR Extracted Text:
-ailaclol
+2025-01-04 17:57:19.078 | INFO     | main:extract_semantic_data:92 - Running OCR on the input image...
+2025-01-04 17:57:21.379 | INFO     | main:extract_semantic_data:114 - Raw OCR Text (French):
 ROYAUMEDUMAROC
-CARTE NATIONALE D'IDENTITE
-HAMZA
-ELBOUZIDI
-29.11.2001
-Néle
-SAFI
-HH246780
-Valablejusqu'au26.05.2031
-No
-2024-12-29 20:53:11.108 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
-2024-12-29 20:53:11.111 | INFO     | app:validate_structured_data:94 - Validating extracted structured data.
-2024-12-29 20:53:11.111 | WARNING  | app:validate_structured_data:98 - Critical field 'Prénom' is missing.
-2024-12-29 20:53:11.138 | WARNING  | app:validate_structured_data:98 - Critical field 'Nom' is missing.
-2024-12-29 20:53:11.139 | WARNING  | app:validate_structured_data:98 - Critical field 'Num d'identité' is missing.
-2024-12-29 20:53:11.140 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'Not Detected', 'Nom': 'Not Detected', 'Date de naissance': 'Not Detected', 'Lieu de naissance': 'Not Detected', "Num d'identité": 'Not Detected', "Valable jusqu'au": 'Not Detected'}
-2024-12-29 20:54:56.927 | INFO     | app:extract_data:41 - Image successfully loaded.
-2024-12-29 20:54:56.928 | INFO     | app:preprocess_image:26 - Preprocessing image.
-2024-12-29 20:54:56.960 | INFO     | app:extract_data:47 - Running PaddleOCR.
-2024-12-29 20:54:58.523 | INFO     | app:extract_data:52 - OCR Extracted Text:
-ailaclol
+2Ca12la
+CARTE NATIONALED'IDENTITE
+alc
+A
+M
+AICHA
+MEZOUAR
+Néele
+09.03.1957
+culwoslsjo
+aMARRAKECH
+Valablejusqu'au
+03.02.2020
+alelalo
+bgloW plolysal
+BE19292
+FX
+a
+llll
+
+2025-01-04 17:57:21.380 | INFO     | main:extract_semantic_data:115 - Raw OCR Text (Arabic):
+DU
+ةيبرغملا
+ةكلمملا
+OYAUME
+MAROOC
+CARTE
+NATIONALE
+DIDENTITE
+فيرعتلل
+ةينطولاا
+ةقاطبلا
+ةشئاع
+AICHA
+راوزم
+MEZOUAR
+9.03.
+195
+خيراتب ةدادزم
+ثكارم
+MARRAKECT
+alabl
+03.02.
+20
+ةياغ
+لا
+ ا ةجلاص
+ينطولا نمإلل ماعلا
+ريدملا
+BE19292
+سيرضلا
+يقرسشلا
+
+2025-01-04 17:57:21.381 | INFO     | main:generate_structured_data_with_llama2:41 - Generating structured data using Llama 2...
+2025-01-04 17:58:26.154 | ERROR    | main:generate_structured_data_with_llama2:82 - Error using Llama 2: Expecting value: line 2 column 1 (char 1)
+2025-01-04 17:58:26.154 | INFO     | main:generate_structured_data_with_llama2:41 - Generating structured data using Llama 2...
+2025-01-04 17:59:51.741 | INFO     | main:extract_semantic_data:78 - Running OCR on the input image...
+2025-01-04 17:59:53.116 | INFO     | main:extract_semantic_data:90 - Raw OCR Text:
 ROYAUMEDUMAROC
-CARTE NATIONALE D'IDENTITE
-HAMZA
-ELBOUZIDI
-29.11.2001
-Néle
-SAFI
-HH246780
-Valablejusqu'au26.05.2031
-No
-2024-12-29 20:54:58.524 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
-2024-12-29 20:54:58.525 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
-2024-12-29 20:54:58.525 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ROYAUMEDUMAROC', 'Nom': 'HAMZA', 'Date de naissance': '29.11.2001', 'Lieu de naissance': 'ELBOUZIDI', "Num d'identité": 'SAFI', "Valable jusqu'au": '26.05.2031'}
-2024-12-29 20:56:13.075 | INFO     | app:extract_data:41 - Image successfully loaded.
-2024-12-29 20:56:13.077 | INFO     | app:preprocess_image:26 - Preprocessing image.
-2024-12-29 20:56:13.081 | INFO     | app:extract_data:47 - Running PaddleOCR.
-2024-12-29 20:56:14.289 | INFO     | app:extract_data:52 - OCR Extracted Text:
-alaslooll
-ROYAUME DU MAROC
-ilaibglu
-CARTE NATIONALE DIDENTITE
-AYOUB
-Jaly
-BOULAGHLA
-08.07.1999
-Nele
-SAFI
-CAN377172
-Alll
-HH73696
-Valablejusquau13.04.2032e
-2024-12-29 20:56:14.290 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
-2024-12-29 20:56:14.290 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
-2024-12-29 20:56:14.290 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'AYOUB', 'Nom': 'BOULAGHLA', 'Date de naissance': '08.07.1999', 'Lieu de naissance': 'SAFI', "Num d'identité": 'CAN377172', "Valable jusqu'au": None}
-2024-12-29 20:56:43.251 | INFO     | app:extract_data:41 - Image successfully loaded.
-2024-12-29 20:56:43.252 | INFO     | app:preprocess_image:26 - Preprocessing image.
-2024-12-29 20:56:43.256 | INFO     | app:extract_data:47 - Running PaddleOCR.
-2024-12-29 20:56:44.528 | INFO     | app:extract_data:52 - OCR Extracted Text:
-ROYAUMEDUMAROC
-CARTENATIONALEDIDENTITE
+ll2ibgllaual
+CARTE NATIONALED'IDENTITE
+slall
 ELALAMI
 ZAINEB
-05/12/1983
 Neela
-Sljlug
+05/12/1983
 OUARZAZATE
 CAN 123457
 Specimen
-Valable jusqu'au 22/07/2029  JJa
+Valable jusquau 22/07/2029
+N°
 U1234567
-N
-2024-12-29 20:56:44.529 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
-2024-12-29 20:56:44.529 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
-2024-12-29 20:56:44.530 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ROYAUMEDUMAROC', 'Nom': 'CARTENATIONALEDIDENTITE', 'Date de naissance': None, 'Lieu de naissance': 'ELALAMI', "Num d'identité": 'ZAINEB', "Valable jusqu'au": None}
-2024-12-29 20:56:56.230 | INFO     | app:extract_data:41 - Image successfully loaded.
-2024-12-29 20:56:56.231 | INFO     | app:preprocess_image:26 - Preprocessing image.
-2024-12-29 20:56:56.235 | INFO     | app:extract_data:47 - Running PaddleOCR.
-2024-12-29 20:56:57.165 | INFO     | app:extract_data:52 - OCR Extracted Text:
-wJI aslJ
-ROYAUME DU MAROC
-r m UrJI GU)
-CARTE NATIONALE D IDENTITE
-EL ALAMI
-ZAINEB
-05/12/1983
-N6a la
-1 OUARZAZATE
-CAN 123457
-eahen
-Valablojusquau 22/07/2029 y  11  m
-U1234567
-2024-12-29 20:56:57.181 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
-2024-12-29 20:56:57.181 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
-2024-12-29 20:56:57.182 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ZAINEB', 'Nom': None, 'Date de naissance': None, 'Lieu de naissance': None, "Num d'identité": 'U1234567', "Valable jusqu'au": None}
-2024-12-29 20:57:04.179 | INFO     | app:extract_data:41 - Image successfully loaded.
-2024-12-29 20:57:04.180 | INFO     | app:preprocess_image:26 - Preprocessing image.
-2024-12-29 20:57:04.182 | INFO     | app:extract_data:47 - Running PaddleOCR.
-2024-12-29 20:57:04.878 | INFO     | app:extract_data:52 - OCR Extracted Text:
-alaslooll
-ROYAUME DU MAROC
-ilaibglu
-CARTE NATIONALE DIDENTITE
-AYOUB
-Jaly
-BOULAGHLA
-08.07.1999
-Nele
-SAFI
-CAN377172
-Alll
-HH73696
-Valablejusquau13.04.2032e
-2024-12-29 20:57:04.879 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
-2024-12-29 20:57:04.879 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
-2024-12-29 20:57:04.879 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'AYOUB', 'Nom': 'BOULAGHLA', 'Date de naissance': '08.07.1999', 'Lieu de naissance': 'SAFI', "Num d'identité": 'CAN377172', "Valable jusqu'au": None}
-2024-12-29 20:57:17.865 | INFO     | app:extract_data:41 - Image successfully loaded.
-2024-12-29 20:57:17.866 | INFO     | app:preprocess_image:26 - Preprocessing image.
-2024-12-29 20:57:17.875 | INFO     | app:extract_data:47 - Running PaddleOCR.
-2024-12-29 20:57:19.008 | INFO     | app:extract_data:52 - OCR Extracted Text:
-ailaclol
+
+2025-01-04 17:59:53.116 | INFO     | main:generate_structured_data_with_llama2:27 - Generating structured data using Llama 2...
+2025-01-04 18:00:26.463 | INFO     | main:generate_structured_data_with_llama2:64 - Llama 2 generated data: {'Prénom': 'Neela', 'Nom de famille': 'Zaineb', 'Date de naissance': '05/12/1983', 'Lieu de naissance': 'OUARZAZATE', "Num d'identité": 'U1234567', "Valable jusqu'au": '22/07/2029'}
+2025-01-04 18:05:48.210 | INFO     | main:extract_semantic_data:86 - Running OCR on the input image...
+2025-01-04 18:05:49.512 | INFO     | main:extract_semantic_data:98 - Raw OCR Text:
 ROYAUMEDUMAROC
-CARTE NATIONALE D'IDENTITE
-HAMZA
-ELBOUZIDI
-29.11.2001
-Néle
-SAFI
-HH246780
-Valablejusqu'au26.05.2031
-No
-2024-12-29 20:57:19.009 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
-2024-12-29 20:57:19.010 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
-2024-12-29 20:57:19.010 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ROYAUMEDUMAROC', 'Nom': 'HAMZA', 'Date de naissance': '29.11.2001', 'Lieu de naissance': 'ELBOUZIDI', "Num d'identité": 'SAFI', "Valable jusqu'au": '26.05.2031'}
-2024-12-29 20:58:47.810 | INFO     | app:extract_data:41 - Image successfully loaded.
-2024-12-29 20:58:47.812 | INFO     | app:preprocess_image:26 - Preprocessing image.
-2024-12-29 20:58:47.833 | INFO     | app:extract_data:47 - Running PaddleOCR.
-2024-12-29 20:58:49.362 | INFO     | app:extract_data:52 - OCR Extracted Text:
-ailaclol
-ROYAUMEDUMAROC
-CARTE NATIONALE D'IDENTITE
-HAMZA
-ELBOUZIDI
-29.11.2001
-Néle
-SAFI
-HH246780
-Valablejusqu'au26.05.2031
-No
-2024-12-29 20:58:49.362 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
-2024-12-29 20:58:49.364 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
-2024-12-29 20:58:49.365 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ROYAUMEDUMAROC', 'Nom': 'HAMZA', 'Date de naissance': '29.11.2001', 'Lieu de naissance': 'ELBOUZIDI', "Num d'identité": 'SAFI', "Valable jusqu'au": '26.05.2031'}
-2024-12-30 10:21:40.017 | INFO     | app:extract_data:41 - Image successfully loaded.
-2024-12-30 10:21:40.018 | INFO     | app:preprocess_image:26 - Preprocessing image.
-2024-12-30 10:21:40.041 | INFO     | app:extract_data:47 - Running PaddleOCR.
-2024-12-30 10:21:42.059 | INFO     | app:extract_data:52 - OCR Extracted Text:
-ailaclol
-ROYAUMEDUMAROC
-CARTE NATIONALE D'IDENTITE
-HAMZA
-ELBOUZIDI
-29.11.2001
-Néle
-SAFI
-HH246780
-Valablejusqu'au26.05.2031
-No
-2024-12-30 10:21:42.060 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
-2024-12-30 10:21:42.062 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
-2024-12-30 10:21:42.062 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ROYAUMEDUMAROC', 'Nom': 'HAMZA', 'Date de naissance': '29.11.2001', 'Lieu de naissance': 'ELBOUZIDI', "Num d'identité": 'SAFI', "Valable jusqu'au": '26.05.2031'}
-2024-12-30 11:02:10.356 | INFO     | app:extract_data:41 - Image successfully loaded.
-2024-12-30 11:02:10.356 | INFO     | app:preprocess_image:26 - Preprocessing image.
-2024-12-30 11:02:10.359 | INFO     | app:extract_data:47 - Running PaddleOCR.
-2024-12-30 11:02:11.890 | INFO     | app:extract_data:52 - OCR Extracted Text:
-yCalSa
-ROYAUME DU MAROC
-CARTE NATIONALE DIDENTITE
-NOUSSAIR
-ABELLOUCH
-Nele
-01.08.2001
-AGADIRAGADIR IDA OU TNANE
+2Ca12la
+CARTE NATIONALED'IDENTITE
+alc
+A
+M
+AICHA
+MEZOUAR
+Néele
+09.03.1957
+culwoslsjo
+aMARRAKECH
 Valablejusqu'au
-29.01.2028
-Wealwl
-J549231
-2024-12-30 11:02:11.892 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
-2024-12-30 11:02:11.893 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
-2024-12-30 11:02:11.893 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'NOUSSAIR', 'Nom': 'ABELLOUCH', 'Date de naissance': '01.08.2001', 'Lieu de naissance': None, "Num d'identité": 'J549231', "Valable jusqu'au": None}
-2024-12-30 14:30:39.357 | INFO     | app:extract_data:41 - Image successfully loaded.
-2024-12-30 14:30:39.359 | INFO     | app:preprocess_image:26 - Preprocessing image.
-2024-12-30 14:30:39.393 | INFO     | app:extract_data:47 - Running PaddleOCR.
-2024-12-30 14:30:41.230 | INFO     | app:extract_data:52 - OCR Extracted Text:
-ailaclol
+03.02.2020
+alelalo
+bgloW plolysal
+BE19292
+FX
+a
+llll
+
+2025-01-04 18:05:49.512 | INFO     | main:generate_structured_data_with_llama2:27 - Generating structured data using Llama 2...
+2025-01-04 18:08:32.415 | INFO     | main:extract_semantic_data:78 - Running OCR on the input image...
+2025-01-04 18:08:33.741 | INFO     | main:extract_semantic_data:90 - Raw OCR Text:
 ROYAUMEDUMAROC
-CARTE NATIONALE D'IDENTITE
+ll2ibgllaual
+CARTE NATIONALED'IDENTITE
+slall
+ELALAMI
+ZAINEB
+Neela
+05/12/1983
+OUARZAZATE
+CAN 123457
+Specimen
+Valable jusquau 22/07/2029
+N°
+U1234567
+
+2025-01-04 18:08:33.768 | INFO     | main:generate_structured_data_with_llama2:27 - Generating structured data using Llama 2...
+2025-01-04 18:09:07.851 | INFO     | main:generate_structured_data_with_llama2:64 - Llama 2 generated data: {'Prénom': 'Neela', 'Nom de famille': 'Elami', 'Date de naissance': '05/12/1983', 'Lieu de naissance': 'OUARZAZATE', "Num d'identité": 'U1234567', "Valable jusqu'au": '22/07/2029'}
+2025-01-04 18:10:02.073 | INFO     | main:extract_semantic_data:78 - Running OCR on the input image...
+2025-01-04 18:10:03.047 | INFO     | main:extract_semantic_data:90 - Raw OCR Text:
+ROYAUMEDUMAROC
+2Ca12la
+CARTE NATIONALED'IDENTITE
+alc
+A
+M
+AICHA
+MEZOUAR
+Néele
+09.03.1957
+culwoslsjo
+aMARRAKECH
+Valablejusqu'au
+03.02.2020
+alelalo
+bgloW plolysal
+BE19292
+FX
+a
+llll
+
+2025-01-04 18:10:03.047 | INFO     | main:generate_structured_data_with_llama2:27 - Generating structured data using Llama 2...
+2025-01-04 18:10:35.168 | INFO     | main:generate_structured_data_with_llama2:64 - Llama 2 generated data: {'Prénom': 'Néele', 'Nom de famille': 'MEZOUAR', 'Date de naissance': '09.03.1957', 'Lieu de naissance': 'Marrakech', "Num d'identité": 'BE19292', "Valable jusqu'au": '03.02.2020'}
+2025-01-04 18:16:40.004 | INFO     | main:extract_semantic_data:77 - Running OCR on the input image...
+2025-01-04 18:16:41.412 | INFO     | main:extract_semantic_data:89 - Raw OCR Text:
+ROYAUMEDUMAROC
+aayaolaslol
+CARTENATIONALE D'IDENTITE
+lbgllbl
+SAMIRA
+CHAIGARI
+Néele
+14.09.1988
+wodl
+&HAYHASSANI
+imK.1
+CAN136558
+A
+NBH334497
+Valablejusqu'au24.11.2031
+
+2025-01-04 18:16:41.412 | INFO     | main:generate_structured_data_with_llama2:27 - Generating structured data using Llama 2...
+2025-01-04 18:17:45.365 | ERROR    | main:generate_structured_data_with_llama2:67 - Error using Llama 2: Expecting value: line 1 column 1 (char 0)
+2025-01-04 18:17:58.691 | INFO     | main:extract_semantic_data:77 - Running OCR on the input image...
+2025-01-04 18:17:59.786 | INFO     | main:extract_semantic_data:89 - Raw OCR Text:
+ROYAUMEDUMAROC
+ll2ibgllaual
+CARTE NATIONALED'IDENTITE
+slall
+ELALAMI
+ZAINEB
+Neela
+05/12/1983
+OUARZAZATE
+CAN 123457
+Specimen
+Valable jusquau 22/07/2029
+N°
+U1234567
+
+2025-01-04 18:17:59.786 | INFO     | main:generate_structured_data_with_llama2:27 - Generating structured data using Llama 2...
+2025-01-04 18:18:33.277 | ERROR    | main:generate_structured_data_with_llama2:67 - Error using Llama 2: Expecting value: line 1 column 1 (char 0)
+2025-01-04 18:19:41.900 | INFO     | main:extract_semantic_data:78 - Running OCR on the input image...
+2025-01-04 18:19:43.136 | INFO     | main:extract_semantic_data:90 - Raw OCR Text:
+ROYAUMEDUMAROC
+2Ca12la
+CARTE NATIONALED'IDENTITE
+alc
+A
+M
+AICHA
+MEZOUAR
+Néele
+09.03.1957
+culwoslsjo
+aMARRAKECH
+Valablejusqu'au
+03.02.2020
+alelalo
+bgloW plolysal
+BE19292
+FX
+a
+llll
+
+2025-01-04 18:19:43.137 | INFO     | main:generate_structured_data_with_llama2:27 - Generating structured data using Llama 2...
+2025-01-04 18:20:18.133 | INFO     | main:generate_structured_data_with_llama2:64 - Llama 2 generated data: {'Prénom': 'Néele', 'Nom de famille': 'Mezouar', 'Date de naissance': '09.03.1957', 'Lieu de naissance': 'Marrakech', "Num d'identité": 'BE19292', "Valable jusqu'au": '03.02.2020'}
+2025-01-04 19:42:30.242 | INFO     | main:extract_semantic_data:111 - Running OCR on the input image for passport...
+2025-01-04 19:42:32.882 | INFO     | main:extract_semantic_data:123 - Raw OCR Text for passport:
+MeBeYcoyle
+Of the United.States,
+in Order to form amore perfect Union,
+establishJustice, insure domestic Tranquility
+provide for the common defence,
+promote the general Weltare,and secure
+the Blessings of Libertyto ourselves ana
+ourPosterrydoordain and establisb this
+ConsttutioufortbeUnitedStatesotAmerio
+3
+SIGNATUREOF BEARER/SIGNATUREDU TITULAIRE/FIRMA DEL TITULAR
+PASSPORT
+UNITED.STATES.OE.AMIERICA
+PASSEPORT
+PAAROP
+P
+USA
+340007237
+urname/.Nom
+TRAVELER
+Given Names/Prénoms/Nombre
+CANCELLED
+HAPPY
+Nationality/Nationalité/Nacionali
+UNITED STATESOF AMERICA
+Date of birth/Date de naissance/Fecha de nacimiento
+04JUL1967
+Place of birth/Lieu denaissance/Lugar de nacimiento
+Sex/Sexe/Sexo
+WASHINGTON.D.C..U.S.A
+3
+Date of issue/Date de délivrance/Fecha de expedición
+Authority/ Autorité/Autoridad
+08AUG2006
+United States
+Date of.expiration/Date d'expiration/Fecha de caducidad
+EP.Exemplar.Book
+07AUG2016
+Endorsements/Mentions Spéciales/Anotaciones
+SEE PAGE 27
+USA
+P<USATRAVELER<<HAPPY<Z<<<<<<<<<<<<<<S<<<S<
+3400072370USA6707046F16080789100001932113538
+
+2025-01-04 19:42:32.887 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama 2 for passport...
+2025-01-04 19:43:56.265 | ERROR    | main:generate_structured_data_with_llama2:101 - Error using Llama 2 for passport: Expecting value: line 1 column 1 (char 0)
+2025-01-04 19:44:15.092 | INFO     | main:extract_semantic_data:111 - Running OCR on the input image for drivers_license...
+2025-01-04 19:44:17.210 | INFO     | main:extract_semantic_data:123 - Raw OCR Text for drivers_license:
+California
+JSA
+DRIVERLICENSE
+DL11234568
+CLASSC
+EXP08/31/2014
+ENDNONE
+LNCARDHOLDER
+FNIMA
+257024THSTREET
+ANYTOWN,CA95818
+DOB08/31/1977
+RSTR-NONE
+08311977
+DONOR
+VETERAN
+TmaCondhsllet
+SEXF
+HAIR BRN
+EYESBRN
+HGT5-05
+WGT125lb
+ISS
+DD00/00/0000NNNAN/ANFD/YY
+08/31/2009
+
+2025-01-04 19:44:17.211 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama 2 for drivers_license...
+2025-01-04 19:45:12.371 | ERROR    | main:generate_structured_data_with_llama2:101 - Error using Llama 2 for drivers_license: Expecting value: line 2 column 1 (char 1)
+2025-01-04 19:47:20.460 | INFO     | main:extract_semantic_data:111 - Running OCR on the input image for id_card...
+2025-01-04 19:47:21.932 | INFO     | main:extract_semantic_data:123 - Raw OCR Text for id_card:
+ROYAUMEDUMAROC
+aayaolaslol
+CARTENATIONALE D'IDENTITE
+lbgllbl
+SAMIRA
+CHAIGARI
+Néele
+14.09.1988
+wodl
+&HAYHASSANI
+imK.1
+CAN136558
+A
+NBH334497
+Valablejusqu'au24.11.2031
+
+2025-01-04 19:47:21.934 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama 2 for id_card...
+2025-01-04 19:47:51.659 | INFO     | main:generate_structured_data_with_llama2:97 - Llama 2 generated data for id_card: {'Prénom': 'Samira', 'Nom de famille': 'Chaigari', 'Date de naissance': '14.09.1988', 'Lieu de naissance': 'lbgllbl', "Num d'identité": 'NBH334497', "Valable jusqu'au": '24.11.2031'}
+2025-01-04 19:51:55.846 | INFO     | main:extract_semantic_data:111 - Running OCR on the input image for id_card...
+2025-01-04 19:51:57.045 | INFO     | main:extract_semantic_data:123 - Raw OCR Text for id_card:
+ROYAUMEDUMAROC
+2Ca12la
+CARTE NATIONALED'IDENTITE
+alc
+A
+M
+AICHA
+MEZOUAR
+Néele
+09.03.1957
+culwoslsjo
+aMARRAKECH
+Valablejusqu'au
+03.02.2020
+alelalo
+bgloW plolysal
+BE19292
+FX
+a
+llll
+
+2025-01-04 19:51:57.046 | INFO     | main:generate_structured_data_with_llama3:26 - Generating structured data using Llama 3 for id_card...
+2025-01-04 19:52:33.176 | ERROR    | main:generate_structured_data_with_llama3:101 - Error using Llama 3 for id_card: Expecting value: line 1 column 1 (char 0)
+2025-01-04 19:53:02.427 | INFO     | main:extract_semantic_data:111 - Running OCR on the input image for passport...
+2025-01-04 19:53:05.194 | INFO     | main:extract_semantic_data:123 - Raw OCR Text for passport:
+MeBeYcoyle
+Of the United.States,
+in Order to form amore perfect Union,
+establishJustice, insure domestic Tranquility
+provide for the common defence,
+promote the general Weltare,and secure
+the Blessings of Libertyto ourselves ana
+ourPosterrydoordain and establisb this
+ConsttutioufortbeUnitedStatesotAmerio
+3
+SIGNATUREOF BEARER/SIGNATUREDU TITULAIRE/FIRMA DEL TITULAR
+PASSPORT
+UNITED.STATES.OE.AMIERICA
+PASSEPORT
+PAAROP
+P
+USA
+340007237
+urname/.Nom
+TRAVELER
+Given Names/Prénoms/Nombre
+CANCELLED
+HAPPY
+Nationality/Nationalité/Nacionali
+UNITED STATESOF AMERICA
+Date of birth/Date de naissance/Fecha de nacimiento
+04JUL1967
+Place of birth/Lieu denaissance/Lugar de nacimiento
+Sex/Sexe/Sexo
+WASHINGTON.D.C..U.S.A
+3
+Date of issue/Date de délivrance/Fecha de expedición
+Authority/ Autorité/Autoridad
+08AUG2006
+United States
+Date of.expiration/Date d'expiration/Fecha de caducidad
+EP.Exemplar.Book
+07AUG2016
+Endorsements/Mentions Spéciales/Anotaciones
+SEE PAGE 27
+USA
+P<USATRAVELER<<HAPPY<Z<<<<<<<<<<<<<<S<<<S<
+3400072370USA6707046F16080789100001932113538
+
+2025-01-04 19:53:05.197 | INFO     | main:generate_structured_data_with_llama3:26 - Generating structured data using Llama 3 for passport...
+2025-01-04 19:54:01.599 | ERROR    | main:generate_structured_data_with_llama3:101 - Error using Llama 3 for passport: Expecting value: line 1 column 1 (char 0)
+2025-01-04 20:35:05.383 | INFO     | main:extract_semantic_data:111 - Running OCR on the input image for passport...
+2025-01-04 20:35:08.427 | INFO     | main:extract_semantic_data:123 - Raw OCR Text for passport:
+MeBeYcoyle
+Of the United.States,
+in Order to form amore perfect Union,
+establishJustice, insure domestic Tranquility
+provide for the common defence,
+promote the general Weltare,and secure
+the Blessings of Libertyto ourselves ana
+ourPosterrydoordain and establisb this
+ConsttutioufortbeUnitedStatesotAmerio
+3
+SIGNATUREOF BEARER/SIGNATUREDU TITULAIRE/FIRMA DEL TITULAR
+PASSPORT
+UNITED.STATES.OE.AMIERICA
+PASSEPORT
+PAAROP
+P
+USA
+340007237
+urname/.Nom
+TRAVELER
+Given Names/Prénoms/Nombre
+CANCELLED
+HAPPY
+Nationality/Nationalité/Nacionali
+UNITED STATESOF AMERICA
+Date of birth/Date de naissance/Fecha de nacimiento
+04JUL1967
+Place of birth/Lieu denaissance/Lugar de nacimiento
+Sex/Sexe/Sexo
+WASHINGTON.D.C..U.S.A
+3
+Date of issue/Date de délivrance/Fecha de expedición
+Authority/ Autorité/Autoridad
+08AUG2006
+United States
+Date of.expiration/Date d'expiration/Fecha de caducidad
+EP.Exemplar.Book
+07AUG2016
+Endorsements/Mentions Spéciales/Anotaciones
+SEE PAGE 27
+USA
+P<USATRAVELER<<HAPPY<Z<<<<<<<<<<<<<<S<<<S<
+3400072370USA6707046F16080789100001932113538
+
+2025-01-04 20:35:08.429 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama for passport...
+2025-01-04 20:36:12.917 | DEBUG    | main:generate_structured_data_with_llama2:83 - Raw response from Llama for passport: {'model': 'llama3:latest', 'created_at': '2025-01-04T19:36:12.8885492Z', 'message': {'role': 'assistant', 'content': 'After analyzing the text, I was able to extract the following structured data:\n\n```\n{\n  "Nom": "HAPPY",\n  "Prénom": null,\n  "Date de naissance": "04JUL1967",\n  "Nationalité": "UNITED STATESOF AMERICA",\n  "Numéro de passeport": "340007237",\n  "Date d\'expiration": "07AUG2016"\n}\n```\n\nNote that the "Prénom" field is empty, as there is no given name specified in the text.'}, 'done_reason': 'stop', 'done': True, 'total_duration': 64442259200, 'load_duration': 7876083900, 'prompt_eval_count': 407, 'prompt_eval_duration': 37209000000, 'eval_count': 114, 'eval_duration': 19346000000}
+2025-01-04 20:36:12.920 | ERROR    | main:generate_structured_data_with_llama2:98 - JSON decoding failed for passport: Expecting value: line 1 column 1 (char 0)
+2025-01-04 20:41:37.627 | INFO     | main:extract_semantic_data:119 - Running OCR on the input image for passport...
+2025-01-04 20:41:40.323 | INFO     | main:extract_semantic_data:131 - Raw OCR Text for passport:
+RERUBLKANCETPINASWREPUBLGOFTHEPHIZIRPINES
+RASARORTE
+RHE
+CURO
+nwbamw
+Pasuportebt/Fassiortoe
+PASSPORT
+POOOOOOOA
+DELACRUZ
+elwie
+RanaianVc
+MARIA
+PanngitnangapelyidoAMiddiename
+SANTOS
+Petsa.ng.kapaneanakan/Dote.ofbirth
+Nasyonalidadf-Nationolity
+16MAR1980
+FILIPINO
+Kasarian/Sex
+Lugarngkapanganakan/Ploteofbitu
+F
+MANILA
+Petsang parkakaloob/Doe ofue
+27 JUN 2016
+pagkawalangbisa/Vaiid.unti
+Maykapangyarihansnaekaloob/issuing.authority
+26JUN2021
+DFAMANILA
+P<PHLDELA<CRUZ<<MARIA<<<<<<<<<<S<<<<<<<S<<<<
+P0000000A0PHL8003166F2106269<<<<<<<<<<<<<<02
+
+2025-01-04 20:41:40.323 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama 2 for passport...
+2025-01-04 20:43:01.414 | ERROR    | main:generate_structured_data_with_llama2:104 - JSON decoding failed for passport: Expecting value: line 1 column 1 (char 0)
+2025-01-04 20:43:01.414 | DEBUG    | main:generate_structured_data_with_llama2:105 - Raw response: Here is the structured data from the passport text:
+
+{
+"Nom": "RERUBLKANCETPINASWREPUBLGOFTHEPHIZIRPINES",
+"Prénom": "RASARORTE",
+"Date de naissance": "16MAR1980",
+"Nationalité": "FILIPINO",
+"Numéro de passeport": "P0000000A0PHL8003166F2106269",
+"Date d'expiration": "26JUN2021"
+}
+
+Note: The "Nom" and "Prénom" keys are self-explanatory, while the "Date de naissance" key represents the date of birth in the format "ddMARyy". The "Nationalité" key represents the nationality of the passport holder, and the "Numéro de passeport" key represents the passport number. Finally, the "Date d'expiration" key represents the expiration date of the passport in the format "ddMONyy".
+2025-01-04 20:45:10.006 | INFO     | main:extract_semantic_data:119 - Running OCR on the input image for drivers_license...
+2025-01-04 20:45:11.691 | INFO     | main:extract_semantic_data:131 - Raw OCR Text for drivers_license:
+California
+JSA
+DRIVERLICENSE
+DL11234568
+CLASSC
+EXP08/31/2014
+ENDNONE
+LNCARDHOLDER
+FNIMA
+257024THSTREET
+ANYTOWN,CA95818
+DOB08/31/1977
+RSTR-NONE
+08311977
+DONOR
+VETERAN
+TmaCondhsllet
+SEXF
+HAIR BRN
+EYESBRN
+HGT5-05
+WGT125lb
+ISS
+DD00/00/0000NNNAN/ANFD/YY
+08/31/2009
+
+2025-01-04 20:45:11.693 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama 2 for drivers_license...
+2025-01-04 20:45:51.469 | INFO     | main:generate_structured_data_with_llama2:100 - Llama 2 generated data for drivers_license: {'Nom': 'John Doe', 'Prénom': 'Jane', 'Date de naissance': '08/31/1977', 'Numéro de permis': 'DL11234568', "Date d'expiration": '08/31/2014', 'Adresse': {'Rue': '257024th Street', 'Ville': 'Anytown', 'Code postal': 'CA95818'}}
+2025-01-04 20:55:07.717 | INFO     | main:extract_semantic_data:103 - Running OCR on the input image for id_card...
+2025-01-04 20:55:09.137 | INFO     | main:extract_semantic_data:115 - Raw OCR Text for id_card:
+ROYAUMEDUMAROC
+2Ca12la
+CARTE NATIONALED'IDENTITE
+alc
+A
+M
+AICHA
+MEZOUAR
+Néele
+09.03.1957
+culwoslsjo
+aMARRAKECH
+Valablejusqu'au
+03.02.2020
+alelalo
+bgloW plolysal
+BE19292
+FX
+a
+llll
+
+2025-01-04 20:55:09.137 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama 2 for id_card...
+2025-01-04 20:56:27.934 | ERROR    | main:generate_structured_data_with_llama2:88 - JSON decoding failed for id_card: Expecting value: line 1 column 1 (char 0)
+2025-01-04 20:56:27.934 | DEBUG    | main:generate_structured_data_with_llama2:89 - Raw response: Sure, here is the extracted structured data from the ID card text:
+
+{
+"Prénom": "Néele",
+"Nom de famille": "MEZOUAR",
+"Date de naissance": "09.03.1957",
+"Lieu de naissance": "Marrakech",
+"Num d'identité": "BE19292",
+"Valable jusqu'au": "03.02.2020"
+}
+
+The keys in the JSON object correspond to the fields extracted from the ID card text:
+
+* Prénom: The first name of the person (in this case, "Néele").
+* Nom de famille: The last name of the person (in this case, "MEZOUAR").
+* Date de naissance: The date of birth of the person (in this case, "09.03.1957").
+* Lieu de naissance: The place of birth of the person (in this case, "Marrakech").
+* Num d'identité: The identification number of the person (in this case, "BE19292").
+* Valable jusqu'au: The date until which the ID card is valid (in this case, "03.02.2020").
+2025-01-04 20:58:10.956 | INFO     | main:extract_semantic_data:103 - Running OCR on the input image for id_card...
+2025-01-04 20:58:12.609 | INFO     | main:extract_semantic_data:115 - Raw OCR Text for id_card:
+ROYAUMEDUMAROC
+aayaolaslol
+CARTENATIONALE D'IDENTITE
+lbgllbl
+SAMIRA
+CHAIGARI
+Néele
+14.09.1988
+wodl
+&HAYHASSANI
+imK.1
+CAN136558
+A
+NBH334497
+Valablejusqu'au24.11.2031
+
+2025-01-04 20:58:12.611 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama 2 for id_card...
+2025-01-04 20:58:44.717 | INFO     | main:generate_structured_data_with_llama2:85 - Llama 2 generated data for id_card: {'Prénom': 'SAMIRA', 'Nom de famille': 'CHAIGARI', 'Date de naissance': '14.09.1988', 'Lieu de naissance': 'lbgllbl', "Num d'identité": 'CAN136558', "Valable jusqu'au": '24.11.2031'}
+2025-01-04 20:59:07.322 | INFO     | main:extract_semantic_data:103 - Running OCR on the input image for passport...
+2025-01-04 20:59:09.528 | INFO     | main:extract_semantic_data:115 - Raw OCR Text for passport:
+RERUBLKANCETPINASWREPUBLGOFTHEPHIZIRPINES
+RASARORTE
+RHE
+CURO
+nwbamw
+Pasuportebt/Fassiortoe
+PASSPORT
+POOOOOOOA
+DELACRUZ
+elwie
+RanaianVc
+MARIA
+PanngitnangapelyidoAMiddiename
+SANTOS
+Petsa.ng.kapaneanakan/Dote.ofbirth
+Nasyonalidadf-Nationolity
+16MAR1980
+FILIPINO
+Kasarian/Sex
+Lugarngkapanganakan/Ploteofbitu
+F
+MANILA
+Petsang parkakaloob/Doe ofue
+27 JUN 2016
+pagkawalangbisa/Vaiid.unti
+Maykapangyarihansnaekaloob/issuing.authority
+26JUN2021
+DFAMANILA
+P<PHLDELA<CRUZ<<MARIA<<<<<<<<<<S<<<<<<<S<<<<
+P0000000A0PHL8003166F2106269<<<<<<<<<<<<<<02
+
+2025-01-04 20:59:09.533 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama 2 for passport...
+2025-01-04 21:00:08.073 | ERROR    | main:generate_structured_data_with_llama2:88 - JSON decoding failed for passport: Expecting value: line 1 column 1 (char 0)
+2025-01-04 21:00:08.073 | DEBUG    | main:generate_structured_data_with_llama2:89 - Raw response: Here is the structured data extracted from the passport text:
+
+{
+"Nom": "RERUBLKANCETPINASWREPUBLGOFTHEPHIZIRPINES",
+"Prénom": "RASARORTE",
+"Date de naissance": "16MAR1980",
+"Nationalité": "FILIPINO",
+"Numéro de passeport": "P0000000A0PHL8003166F2106269",
+"Date d'expiration": "26JUN2021"
+}
+2025-01-04 21:03:23.705 | INFO     | main:extract_semantic_data:103 - Running OCR on the input image for id_card...
+2025-01-04 21:03:24.858 | INFO     | main:extract_semantic_data:115 - Raw OCR Text for id_card:
+ROYAUMEDUMAROC
+2Ca12la
+CARTE NATIONALED'IDENTITE
+alc
+A
+M
+AICHA
+MEZOUAR
+Néele
+09.03.1957
+culwoslsjo
+aMARRAKECH
+Valablejusqu'au
+03.02.2020
+alelalo
+bgloW plolysal
+BE19292
+FX
+a
+llll
+
+2025-01-04 21:03:24.858 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama 2 for id_card...
+2025-01-04 21:03:59.374 | ERROR    | main:generate_structured_data_with_llama2:88 - JSON decoding failed for id_card: Expecting value: line 1 column 1 (char 0)
+2025-01-04 21:03:59.375 | DEBUG    | main:generate_structured_data_with_llama2:89 - Raw response: Here is the structured data extracted from the ID card text:
+
+{
+"Prénom": "Aïcha",
+"Nom de famille": "Mezouar",
+"Date de naissance": "09.03.1957",
+"Lieu de naissance": "Marrakech",
+"Num d'identité": "BE19292",
+"Valable jusqu'au": "03.02.2020"
+}
+2025-01-04 21:05:52.242 | INFO     | main:extract_semantic_data:106 - Running OCR on the input image for id_card...
+2025-01-04 21:05:53.718 | INFO     | main:extract_semantic_data:118 - Raw OCR Text for id_card:
+ROYAUMEDUMAROC
+aayaolaslol
+CARTENATIONALE D'IDENTITE
+lbgllbl
+SAMIRA
+CHAIGARI
+Néele
+14.09.1988
+wodl
+&HAYHASSANI
+imK.1
+CAN136558
+A
+NBH334497
+Valablejusqu'au24.11.2031
+
+2025-01-04 21:05:53.718 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama 2 for id_card...
+2025-01-04 21:06:26.504 | INFO     | main:generate_structured_data_with_llama2:88 - Llama 2 generated data for id_card: {'Prénom': 'Samira', 'Nom de famille': 'Chaigari', 'Date de naissance': '14.09.1988', 'Lieu de naissance': 'lbgllbl', "Num d'identité": 'CAN136558', "Valable jusqu'au": '24.11.2031'}
+2025-01-04 21:06:40.101 | INFO     | main:extract_semantic_data:106 - Running OCR on the input image for passport...
+2025-01-04 21:06:42.524 | INFO     | main:extract_semantic_data:118 - Raw OCR Text for passport:
+MeBeYcoyle
+Of the United.States,
+in Order to form amore perfect Union,
+establishJustice, insure domestic Tranquility
+provide for the common defence,
+promote the general Weltare,and secure
+the Blessings of Libertyto ourselves ana
+ourPosterrydoordain and establisb this
+ConsttutioufortbeUnitedStatesotAmerio
+3
+SIGNATUREOF BEARER/SIGNATUREDU TITULAIRE/FIRMA DEL TITULAR
+PASSPORT
+UNITED.STATES.OE.AMIERICA
+PASSEPORT
+PAAROP
+P
+USA
+340007237
+urname/.Nom
+TRAVELER
+Given Names/Prénoms/Nombre
+CANCELLED
+HAPPY
+Nationality/Nationalité/Nacionali
+UNITED STATESOF AMERICA
+Date of birth/Date de naissance/Fecha de nacimiento
+04JUL1967
+Place of birth/Lieu denaissance/Lugar de nacimiento
+Sex/Sexe/Sexo
+WASHINGTON.D.C..U.S.A
+3
+Date of issue/Date de délivrance/Fecha de expedición
+Authority/ Autorité/Autoridad
+08AUG2006
+United States
+Date of.expiration/Date d'expiration/Fecha de caducidad
+EP.Exemplar.Book
+07AUG2016
+Endorsements/Mentions Spéciales/Anotaciones
+SEE PAGE 27
+USA
+P<USATRAVELER<<HAPPY<Z<<<<<<<<<<<<<<S<<<S<
+3400072370USA6707046F16080789100001932113538
+
+2025-01-04 21:06:42.526 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama 2 for passport...
+2025-01-04 21:07:48.455 | ERROR    | main:generate_structured_data_with_llama2:91 - JSON decoding failed for passport: Expecting value: line 1 column 1 (char 0)
+2025-01-04 21:07:48.455 | DEBUG    | main:generate_structured_data_with_llama2:92 - Raw response: Sure, here is the extracted data in a JSON format:
+```json
+{
+  "Nom": "MeBeYcoyle",
+  "Prénom": "Of the United States",
+  "Date de naissance": "04 JUL 1967",
+  "Nationalité": "United States of America",
+  "Numéro de passeport": "340007237",
+  "Date d'expiration": "07 AUG 2016"
+}
+```
+2025-01-04 21:08:19.526 | INFO     | main:extract_semantic_data:106 - Running OCR on the input image for drivers_license...
+2025-01-04 21:08:20.531 | INFO     | main:extract_semantic_data:118 - Raw OCR Text for drivers_license:
+ROYAUME DU MAROC
+alaslll
+PERMIS DECONDUIRE
+tnmay
+w-uad
+P51D123456
+ABDELLATIFAMINE
+ECIMEN
+ELIDRISSIELKITOUN
+cn/a
+22/05/2003
+YEMIEAAPA
+.a
+AB123455
+CASABLANCA-SIDIBELYOUT
+DeeCasablanc
+ME
+25/01/2020
+Autint
+AMAT
+
+2025-01-04 21:08:20.531 | INFO     | main:generate_structured_data_with_llama2:26 - Generating structured data using Llama 2 for drivers_license...
+2025-01-04 21:09:06.782 | INFO     | main:generate_structured_data_with_llama2:88 - Llama 2 generated data for drivers_license: {'Nom': 'ROYAUME DU MAROC', 'Prénom': 'alaslll', 'Date de naissance': 'tnmay', 'Numéro de permis': 'P51D123456', "Date d'expiration": 'w-uad', 'Adresse': [{'CN/A': 'cn/a', 'Date': '22/05/2003'}, {'YEMIEAAPA': '.a', 'Numéro de permis': 'AB123455', 'Adresse': 'CASABLANCA-SIDIBELYOUT'}]}
+2025-01-04 21:16:39.788 | INFO     | main:extract_semantic_data:151 - Running OCR on the input image for id_card...
+2025-01-04 21:16:41.542 | INFO     | main:extract_semantic_data:163 - Raw OCR Text for id_card:
+ROYAUMEDUMAROC
+aayaolaslol
+CARTENATIONALE D'IDENTITE
+lbgllbl
+SAMIRA
+CHAIGARI
+Néele
+14.09.1988
+wodl
+&HAYHASSANI
+imK.1
+CAN136558
+A
+NBH334497
+Valablejusqu'au24.11.2031
+
+2025-01-04 21:16:41.547 | INFO     | main:generate_structured_data_with_llama2:35 - Generating structured data using Llama 2 for id_card...
+2025-01-04 21:17:32.737 | INFO     | main:generate_structured_data_with_llama2:106 - Llama 2 generated data for id_card: {'Prénom': 'SAMIRA', 'Nom de famille': 'CHAIGARI', 'Date de naissance': '14.09.1988', 'Lieu de naissance': 'Néele', "Num d'identité": 'NBH334497', "Valable jusqu'au": '24.11.2031'}
+2025-01-04 21:17:49.965 | INFO     | main:extract_semantic_data:151 - Running OCR on the input image for passport...
+2025-01-04 21:17:53.020 | INFO     | main:extract_semantic_data:163 - Raw OCR Text for passport:
+MeBeYcoyle
+Of the United.States,
+in Order to form amore perfect Union,
+establishJustice, insure domestic Tranquility
+provide for the common defence,
+promote the general Weltare,and secure
+the Blessings of Libertyto ourselves ana
+ourPosterrydoordain and establisb this
+ConsttutioufortbeUnitedStatesotAmerio
+3
+SIGNATUREOF BEARER/SIGNATUREDU TITULAIRE/FIRMA DEL TITULAR
+PASSPORT
+UNITED.STATES.OE.AMIERICA
+PASSEPORT
+PAAROP
+P
+USA
+340007237
+urname/.Nom
+TRAVELER
+Given Names/Prénoms/Nombre
+CANCELLED
+HAPPY
+Nationality/Nationalité/Nacionali
+UNITED STATESOF AMERICA
+Date of birth/Date de naissance/Fecha de nacimiento
+04JUL1967
+Place of birth/Lieu denaissance/Lugar de nacimiento
+Sex/Sexe/Sexo
+WASHINGTON.D.C..U.S.A
+3
+Date of issue/Date de délivrance/Fecha de expedición
+Authority/ Autorité/Autoridad
+08AUG2006
+United States
+Date of.expiration/Date d'expiration/Fecha de caducidad
+EP.Exemplar.Book
+07AUG2016
+Endorsements/Mentions Spéciales/Anotaciones
+SEE PAGE 27
+USA
+P<USATRAVELER<<HAPPY<Z<<<<<<<<<<<<<<S<<<S<
+3400072370USA6707046F16080789100001932113538
+
+2025-01-04 21:17:53.028 | INFO     | main:generate_structured_data_with_llama2:35 - Generating structured data using Llama 2 for passport...
+2025-01-04 21:18:59.794 | INFO     | main:generate_structured_data_with_llama2:106 - Llama 2 generated data for passport: {'Nom': 'MeBeYcoyle', 'Prénom': 'Of the United States', 'Date de naissance': '1967-04-07', 'Nationalité': 'United States of America', 'Numéro de passeport': '340007237', "Date d'expiration": '2016-08-07'}
+2025-01-04 21:19:21.145 | INFO     | main:extract_semantic_data:151 - Running OCR on the input image for drivers_license...
+2025-01-04 21:19:22.571 | INFO     | main:extract_semantic_data:163 - Raw OCR Text for drivers_license:
+ROYAUME DU MAROC
+alaslll
+PERMIS DECONDUIRE
+tnmay
+w-uad
+P51D123456
+ABDELLATIFAMINE
+ECIMEN
+ELIDRISSIELKITOUN
+cn/a
+22/05/2003
+YEMIEAAPA
+.a
+AB123455
+CASABLANCA-SIDIBELYOUT
+DeeCasablanc
+ME
+25/01/2020
+Autint
+AMAT
+
+2025-01-04 21:19:22.571 | INFO     | main:generate_structured_data_with_llama2:35 - Generating structured data using Llama 2 for drivers_license...
+2025-01-04 21:20:02.348 | INFO     | main:generate_structured_data_with_llama2:106 - Llama 2 generated data for drivers_license: {'Nom': 'ROYAUME DU MAROC', 'Prénom': 'alaslll', 'Date de naissance': 'tnmay', 'Numéro de permis': 'P51D123456', "Date d'expiration": 'w-uad', 'Adresse': ['ECIMEN', 'ELIDRISSIELKITOUN', 'cn/a']}
+2025-01-04 21:20:34.740 | INFO     | main:extract_semantic_data:151 - Running OCR on the input image for drivers_license...
+2025-01-04 21:20:35.915 | INFO     | main:extract_semantic_data:163 - Raw OCR Text for drivers_license:
+Saskatchewan
+driver's licence
+Customer-Number
+031962423119891212M
+38536921
+TEMPLATE
+Fake.co
+22
+Faketemplate.com
+ReginaSK S4P 2N7
+Date of Birth
+Class
+Eyes
+Heightall.CSex
+1
+1989DEC12
+BRO
+175cmM
+Date of lssue
+co'End
+2019SEP08
+M
+4989DEC12
+Date6f Expiry
+Rest
+lietin
+2025DEC12
+A
+38536921
+FakeTemplate
+
+2025-01-04 21:20:35.917 | INFO     | main:generate_structured_data_with_llama2:35 - Generating structured data using Llama 2 for drivers_license...
+2025-01-04 21:21:16.827 | INFO     | main:generate_structured_data_with_llama2:106 - Llama 2 generated data for drivers_license: {'Nom': '031962423119891212M', 'Prénom': 'Faketemplate', 'Date de naissance': '1989-12-12', 'Numéro de permis': '38536921', "Date d'expiration": '2025-12-12', 'Adresse': 'Regina SK S4P 2N7'}
+2025-01-04 21:21:42.980 | INFO     | main:extract_semantic_data:151 - Running OCR on the input image for id_card...
+2025-01-04 21:21:44.336 | INFO     | main:extract_semantic_data:163 - Raw OCR Text for id_card:
+ROYAUMEDUMAROC
+aayaolaslol
+CARTENATIONALE D'IDENTITE
+lbgllbl
+SAMIRA
+CHAIGARI
+Néele
+14.09.1988
+wodl
+&HAYHASSANI
+imK.1
+CAN136558
+A
+NBH334497
+Valablejusqu'au24.11.2031
+
+2025-01-04 21:21:44.336 | INFO     | main:generate_structured_data_with_llama2:35 - Generating structured data using Llama 2 for id_card...
+2025-01-04 21:22:16.721 | INFO     | main:generate_structured_data_with_llama2:106 - Llama 2 generated data for id_card: {'Prénom': 'SAMIRA', 'Nom de famille': 'CHAIGARI', 'Date de naissance': '14.09.1988', 'Lieu de naissance': 'string', "Num d'identité": 'NBH334497', "Valable jusqu'au": '24.11.2031'}
+2025-01-04 21:22:40.121 | INFO     | main:extract_semantic_data:151 - Running OCR on the input image for id_card...
+2025-01-04 21:22:41.865 | INFO     | main:extract_semantic_data:163 - Raw OCR Text for id_card:
+ROYAUMEDUMAROC
+lAglall
+CARTE NATIONALED'IDENTITE
 HAMZA
+ssigdl
 ELBOUZIDI
 29.11.2001
 Néle
+cutainie
 SAFI
+CAN613945
+A
 HH246780
-Valablejusqu'au26.05.2031
 No
-2024-12-30 14:30:41.230 | INFO     | app:parse_id_card:69 - Parsing OCR text for structured data.
-2024-12-30 14:30:41.232 | INFO     | app:validate_structured_data:110 - Validating extracted structured data.
-2024-12-30 14:30:41.232 | INFO     | app:extract_data:56 - Parsed Structured Data: {'Prénom': 'ROYAUMEDUMAROC', 'Nom': 'HAMZA', 'Date de naissance': '29.11.2001', 'Lieu de naissance': 'ELBOUZIDI', "Num d'identité": 'SAFI', "Valable jusqu'au": '26.05.2031'}
+Valablejusqu'au 26.05.2031
+
+2025-01-04 21:22:41.865 | INFO     | main:generate_structured_data_with_llama2:35 - Generating structured data using Llama 2 for id_card...
+2025-01-04 21:23:11.366 | INFO     | main:generate_structured_data_with_llama2:106 - Llama 2 generated data for id_card: {'Prénom': 'Hamza', 'Nom de famille': 'El Bouzidi', 'Date de naissance': '29.11.2001', 'Lieu de naissance': 'Néle', "Num d'identité": 'HH246780', "Valable jusqu'au": '26.05.2031'}
