@@ -41,10 +41,9 @@ def generate_structured_data_with_llama2(raw_text: str, document_type: str) -> D
         # Introduction prompt for setting context
         introduction_prompt = """
         You are an AI model designed to process and label the extracted data.
-        Your task is to extract specific fields from the given OCR text and return **only** the valid **JSON structure** without any additional introduction ,text, explanations, or comments.
+        Your task is to extract specific fields from the given OCR text and return **only** the valid **JSON structure** without any additional introduction, text, explanations, or comments.
         Your output must generate **only JSON** with the exact field names required. Any missing or unknown field should be left as an empty string `""`.
         Ensure dates are formatted as `dd.mm.yyyy` and are realistic.
-        dont put this in the output 
         """
 
         # Create the document-specific prompt with context
@@ -64,7 +63,6 @@ def generate_structured_data_with_llama2(raw_text: str, document_type: str) -> D
                 "Valable jusqu'au": "date"
             }}
             """
-
         elif document_type == "passport":
             prompt = f"""
             {introduction_prompt}
@@ -81,7 +79,6 @@ def generate_structured_data_with_llama2(raw_text: str, document_type: str) -> D
                 "Date d'expiration": "date"
             }}
             """
-
         elif document_type == "drivers_license":
             prompt = f"""
             {introduction_prompt}
@@ -98,7 +95,6 @@ def generate_structured_data_with_llama2(raw_text: str, document_type: str) -> D
                 "Adresse": "string"
             }}
             """
-
         else:
             raise ValueError("Unknown document type")
 
@@ -107,21 +103,19 @@ def generate_structured_data_with_llama2(raw_text: str, document_type: str) -> D
         # Log the raw response for debugging purposes
         logger.debug(f"Raw response from LLM: {structured_data_content}")
 
-        if structured_data_content == '{"error": "Failed to reach LLM service"}':
-            logger.error(f"Failed to reach LLM service for {document_type}.")
-            return {"error": "Failed to reach LLM service"}
+        # Extract JSON using a regular expression
+        json_match = re.search(r"\{.*\}", structured_data_content, re.DOTALL)
+        if not json_match:
+            logger.error(f"Failed to find valid JSON in the response for {document_type}. Raw response: {structured_data_content}")
+            return {"error": "Failed to extract valid JSON"}
+
+        structured_data_content = json_match.group()
 
         try:
-            # Strip any unwanted introductory or explanatory text before JSON parsing
-            structured_data_content = structured_data_content.strip()
-            if structured_data_content.startswith("Here is the output JSON structure") or not structured_data_content.startswith("{"):
-                logger.error(f"Unexpected response format for {document_type}. Raw response: {structured_data_content}")
-                return {"error": "Unexpected response format"}
-
-            # Attempt to parse the response as JSON
+            # Parse the extracted JSON
             structured_data = json.loads(structured_data_content)
 
-            # Ensure the generated JSON has the necessary fields
+            # Validate the JSON against required fields
             if document_type == "id_card":
                 required_fields = ["Prénom", "Nom de famille", "Date de naissance", "Lieu de naissance", "Num d'identité", "Valable jusqu'au"]
             elif document_type == "passport":
@@ -131,7 +125,6 @@ def generate_structured_data_with_llama2(raw_text: str, document_type: str) -> D
             else:
                 required_fields = []
 
-            # Check that all required fields are in the JSON
             if all(field in structured_data for field in required_fields):
                 logger.info(f"LLM generated valid data for {document_type}: {structured_data}")
                 return structured_data
@@ -141,7 +134,7 @@ def generate_structured_data_with_llama2(raw_text: str, document_type: str) -> D
 
         except json.JSONDecodeError:
             logger.error(f"JSON decoding failed for {document_type}. Raw response: {structured_data_content}")
-            return {"error": "LLM did not return valid JSON"}
+            return {"error": "Failed to decode JSON"}
 
     except Exception as e:
         logger.error(f"Error processing text for {document_type}: {str(e)}")
