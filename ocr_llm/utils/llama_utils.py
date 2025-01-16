@@ -14,7 +14,7 @@ def clean_ocr_text(raw_text: str) -> str:
     return "\n".join(cleaned_lines)
 
 
-def send_prompt_to_llm(prompt, model="llama2", endpoint="https://d67gycs2panm5pfz.us-east-1.aws.endpoints.huggingface.cloud/v1/chat/completions"):
+def send_prompt_to_llm(prompt, model="llama2", endpoint="https://ibmx6ymcc4tm6vwp.us-east-1.aws.endpoints.huggingface.cloud/v1/chat/completions"):
     try:
         response = requests.post(
             endpoint,
